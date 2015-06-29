@@ -8,9 +8,9 @@
 
 1. Install from bower:
 
-```
-bower install polymer-embed-bandcamp
-```
+  ```
+  bower install polymer-embed-bandcamp
+  ```
 
 2. Import Custom Element:
 
