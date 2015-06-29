@@ -6,13 +6,19 @@
 
 ## Usage
 
-1. Import Custom Element:
+1. Install from bower:
+
+```
+bower install polymer-embed-bandcamp
+```
+
+2. Import Custom Element:
 
   ```html
   <link rel="import" href="bandcamp-player.html">
   ```
 
-2. Start using it!
+3. Start using it!
 
   ```html
   <bandcamp-player albumid="2263483982" size="large" bgcolor="000000" linkcolor="0687f5"=></bandcamp-player>
