@@ -1,0 +1,60 @@
+<!-- Imports polymer -->
+<link rel="import" href="../polymer/polymer.html">
+
+<!-- Defines element markup -->
+<dom-module id="bandcamp-player">
+    <style>
+        iframe {
+            border: 0;
+            overflow: hidden;
+            width: 100%;
+        }
+    </style>
+    <template if="{{ albumid }}">
+    <iframe src="{{ getPlayerUrl() }}" style$="{{ getHeight() }}" seamless></iframe>
+    </template>
+</dom-module>
+
+<!-- Registers custom element -->
+<script>
+
+Polymer({
+    is: 'bandcamp-player',
+    properties: {
+        albumid: Number,
+        bgcolor: String,
+        linkcolor: String,
+        size: String
+    },
+
+    getHeight: function() {
+        var size = this.attributes.size.value;
+        if(size === "small"){
+            return "height: 42px;";
+        }else {
+            return "width: 350px; height: 470px;";
+        }
+    },
+
+    getPlayerUrl: function() { 
+        var props = this.attributes;
+        var params = {
+            album: props.albumid.value,
+            size: props.size.value,
+            bgcol: props.bgcolor.value,
+            linkcol: props.linkcolor.value,
+            tracklist: false,
+            transparent: true
+        };
+
+        var paramPairs = [];
+        for(var key in params) {
+            if(params[key]){
+                paramPairs.push(key + "=" + params[key]);
+            }
+        }
+
+        return "https://bandcamp.com/EmbeddedPlayer/" + paramPairs.join("/");
+    }
+});
+</script>
