@@ -1,6 +1,5 @@
 <!-- Imports polymer -->
 <link rel="import" href="../polymer/polymer.html">
-
 <!-- Defines element markup -->
 <dom-module id="bandcamp-player">
     <style>
@@ -11,7 +10,7 @@
         }
     </style>
     <template if="{{ albumid }}">
-    <iframe src="{{ getPlayerUrl() }}" style$="{{ getHeight() }}" seamless></iframe>
+    <iframe src="{{ getPlayerUrl(albumid,bgcolor,linkcolor,size) }}" style$="{{ getHeight(size) }}" seamless></iframe>
     </template>
 </dom-module>
 
@@ -27,8 +26,7 @@ Polymer({
         size: String
     },
 
-    getHeight: function() {
-        var size = this.attributes.size.value;
+    getHeight: function(size) {
         if(size === "small"){
             return "height: 42px;";
         }else {
@@ -36,21 +34,21 @@ Polymer({
         }
     },
 
-    getPlayerUrl: function() { 
+    getPlayerUrl: function(albumid,bgcolor,linkcolor,size) {
         var props = this.attributes;
-        var params = {
-            album: props.albumid.value,
-            size: props.size.value,
-            bgcol: props.bgcolor.value,
-            linkcol: props.linkcolor.value,
+        this.params = {
+            album: albumid,
+            size: size,
+            bgcol: bgcolor,
+            linkcol: linkcolor,
             tracklist: false,
             transparent: true
         };
 
         var paramPairs = [];
-        for(var key in params) {
-            if(params[key]){
-                paramPairs.push(key + "=" + params[key]);
+        for(var key in this.params) {
+            if(this.params[key]){
+                paramPairs.push(key + "=" + this.params[key]);
             }
         }
 
