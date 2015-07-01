@@ -2,57 +2,11 @@
 <link rel="import" href="../polymer/polymer.html">
 <!-- Defines element markup -->
 <dom-module id="bandcamp-player">
-    <style>
-        iframe {
-            border: 0;
-            overflow: hidden;
-            width: 100%;
-        }
-    </style>
-    <template if="{{ albumid }}">
-    <iframe src="{{ getPlayerUrl(albumid,bgcolor,linkcolor,size) }}" style$="{{ getHeight(size) }}" seamless></iframe>
-    </template>
 </dom-module>
 
 <!-- Registers custom element -->
 <script>
 
 Polymer({
-    is: 'bandcamp-player',
-    properties: {
-        albumid: Number,
-        bgcolor: String,
-        linkcolor: String,
-        size: String
-    },
-
-    getHeight: function(size) {
-        if(size === "small"){
-            return "height: 42px;";
-        }else {
-            return "width: 350px; height: 470px;";
-        }
-    },
-
-    getPlayerUrl: function(albumid,bgcolor,linkcolor,size) {
-        var props = this.attributes;
-        this.params = {
-            album: albumid,
-            size: size,
-            bgcol: bgcolor,
-            linkcol: linkcolor,
-            tracklist: false,
-            transparent: true
-        };
-
-        var paramPairs = [];
-        for(var key in this.params) {
-            if(this.params[key]){
-                paramPairs.push(key + "=" + this.params[key]);
-            }
-        }
-
-        return "https://bandcamp.com/EmbeddedPlayer/" + paramPairs.join("/");
-    }
 });
 </script>
