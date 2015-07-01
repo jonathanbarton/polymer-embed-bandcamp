@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="../../webcomponentsjs/webcomponents.min.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <link rel="import" href="../bandcamp-player.html">
+</head>
+<body>
+  <bandcamp-player id="fixture" albumid="2263483982" size="large" bgcolor="000000" linkcolor="0687f5"></bandcamp-player>
+  <script>
+    var bcFixture = document.getElementById('fixture');
+    suite('<bandcamp-player>', function() {
+      test('has attributes', function() {
+        assert.equal(bcFixture.albumid, "2263483982");
+      });
+    });
+  </script>
+</body>
+</html>
